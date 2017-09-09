@@ -1,0 +1,21 @@
+version: '3.3'
+
+services: 
+  generator:
+    build:
+      context: .     
+      dockerfile: dockerfile
+    image: aspnetcoregeneratorapi/withmailhogsupport
+    ports:
+    - "8090:80"
+    environment:
+     - MailHostUrl=mail
+     - MailPort=1025
+  mail:
+    image: mailhog/mailhog
+    ports:
+    - "8025:8025"
+    - "1025:1025"
+
+# MailHostUrl variable is the smpt server which is the mailhog dns
+# 

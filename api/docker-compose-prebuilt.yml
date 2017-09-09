@@ -1,0 +1,21 @@
+version: '3.3'
+
+services: 
+  generatorprebuilt:
+    build:
+      context: .      
+      dockerfile: dockerfile
+    image: rajeshmuraleedharan/aspnetcoregeneratorapi
+    ports:
+    - "9050:80"
+    environment:
+      - MailHostUrl=mailprebuilt
+      - MailPort=1025
+  mailprebuilt:
+    image: mailhog/mailhog
+    ports:
+    - "9030:8025"
+    - "1025:1025"
+
+# MailHostUrl variable is the smpt server which is the mailhog dns
+# 
